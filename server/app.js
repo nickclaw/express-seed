@@ -1,7 +1,7 @@
 var compress = require('compression'),
     express = require('express'),
     path = require('path'),
-    passport = require('passport'),
+    passport = require('./passport'),
     statics = express.static;
 
 var app = require('express')();
