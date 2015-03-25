@@ -2,7 +2,8 @@
 
 module.exports = Promise.all([
     require('./app'),
-    // database here
+    // require('./database'),
+    // require('./some_other_service')
 ]);
 
 module.exports.then(

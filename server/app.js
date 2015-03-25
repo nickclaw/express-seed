@@ -49,3 +49,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = Promise.try(app.listen, [ C.SERVER.PORT ], app);
+
+module.exports.then(function() {
+    Log.info("Server listening on: %s", C.SERVER.PORT);
+});
