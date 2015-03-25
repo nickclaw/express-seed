@@ -1,4 +1,4 @@
-
+var cluster = require('cluster');
 
 module.exports = Promise.all([
     require('./app'),
@@ -13,5 +13,6 @@ module.exports.then(
     function(err) {
         Log.error("Could not start app.");
         Log.error(err);
+        cluster.worker.disconnect();
     }
-)
+);
