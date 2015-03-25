@@ -12,8 +12,9 @@ require('babel/register')({
 // Sets up globals and configuration
 //
 
-var env = process.env.NODE_ENV || 'development',
-    root = path.resolve(__dirname, '..');
+var env = process.env.NODE_ENV || 'development';
+
+global.ROOT = path.resolve(__dirname, '..');
 
 // expose bluebird Promises
 global.Promise = Promise;
@@ -51,7 +52,7 @@ if (C.LOGGING.FILE.ENABLED) {
         depth: 3,
         prettyPrint: true,
         json: false,
-        filename: path.resolve(root, C.LOGGING.FILE.NAME)
+        filename: path.resolve(ROOT, C.LOGGING.FILE.NAME)
     }));
 }
 

@@ -36,7 +36,7 @@ if (cluster.isMaster) {
 
     Log.info('Worker online');
 
-    require('./server/server');
+    require('./server/index');
 }
 
 // log any uncaught expections
