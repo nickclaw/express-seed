@@ -5,6 +5,7 @@ public/src/style/*.css
 
 config/*.json
 !config/default.json
+!config/travis.json
 
 *.log
 .sass-cache
