@@ -1,4 +1,10 @@
 node_modules
+public/build
+public/lib
+public/src/style/*.css
+
 config/*.json
 !config/default.json
+
 *.log
+.sass-cache

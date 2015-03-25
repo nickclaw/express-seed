@@ -1,4 +1,7 @@
-var compress = require('compression'),
+var bodyParser = require('body-parser'),
+    compress = require('compression'),
+    cookieParser = require('cookie-parser'),
+    cookieSession = require('cookie-session'),
     express = require('express'),
     path = require('path'),
     passport = require('./passport'),
@@ -21,7 +24,7 @@ app.use('/static/', function(req, res, next) {
 //
 // Authentication
 //
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cookieSession({
     key: C.SERVER.COOKIE.key,
