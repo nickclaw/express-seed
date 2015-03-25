@@ -1,6 +1,17 @@
 express-seed
 ------------
 
+## Features
+1. Useful global variables
+  1. `C` - current configuration
+  2. `Log` - [Winston](https://github.com/winstonjs/winston) logger instance
+2. [Bluebird](https://github.com/petkaantonov/bluebird) promises
+3. [Babel](http://babeljs.io/)
+  1. Use es6 features now
+  2. [Experimental](http://babeljs.io/docs/usage/experimental/) features enabled.
+4. Environment support
+  1. Have different settings for development, testing, and production.
+
 ## Setup
 ```shell
 npm install
@@ -26,3 +37,32 @@ The master branch of this repository tries to assume as little as possible about
 1. Install all front-end dependencies using `bower install --save <packages>`. You can then include them in your html from `/static/lib/<package>/file.js`.
 
 2. Put all external templates in the `public/src/template/` directory, the Gruntfile htmlmin task depends on them being there.
+
+##### React
+1. Install React and other front-end dependencies through the npm, use [browserify](https://github.com/substack/node-browserify) as either a grunt task or express middleware to package them.
+
+2. Use [react-router](https://github.com/rackt/react-router) to route your actual pages.
+
+```js
+// public/src/script/app.js
+// code above ommited
+
+if (typeof window === undefined) {
+    Router.run(routes, Router.HistoryLocation, (Handler, state) => {
+        React.render(<Handler routerState={state}/>, document.body);
+    });
+} else {
+    module.exports = (req, res) => {
+        Router.run(routes, req.url, (Handler, state) => {
+            res.render(__dirname + '/template.ejs', {
+                content: React.renderToString(<Handler routerState={state}/>)
+            });
+        });
+    };
+}
+
+// server/app.js
+// code above ommited
+// last app.use!
+app.use( require('../public/src/script/app') )
+```
